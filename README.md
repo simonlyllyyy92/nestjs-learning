@@ -27,4 +27,33 @@ NestJs Install use Nest cli
 3. Using cli to create : nest generate module + module name 
 4. Using cli to create:  nest generate controller messages/messages(route/classname) - -flat (don’t create another controller folder)
 5. [Optional] Install Rest client extension on vscode and create ‘requests.http’ file on the root of project
-6. 
+
+
+Nestjs. Decorators
+
+@Body(). @Param
+
+These 2 decorators are used for accessing request data
+1. Http request body
+2. Http request params
+
+Request param: 
+	‘localhost:3000/messages/2 (/:id = 2 could be the params)
+
+Validation Pipe 
+1. Pipe built in to Nest to make validation easy
+2. Set up ValidatePipe in main.ts to set up validation on all incoming request
+    1. Tell nest to use global validation
+    2. Create a class that describes the different properties that the request body should have 
+    3. Add validation rules to the class
+    4. Apply that class to the request handler
+3. Install class-validator and class-transformer (some of the decorator comes from here) 
+
+
+Service and Repository
+Repository handle data in database, Use service to handle Repository, Use controller to communicate with service
+1. Create messages.repository.ts file using read file and wirtefile from nodes
+2. Create messages.service.ts  (service will not work until it build up it’s relationship with repository)
+3. Use the service in controller
+4. Add error exceptions from common module
+
