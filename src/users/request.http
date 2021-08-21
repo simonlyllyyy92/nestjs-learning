@@ -7,3 +7,23 @@ content-type: application/json
     "email": "asdf@asdf.com",
     "password": "123"
 }
+
+### Find one
+GET http://localhost:3000/auth/1
+
+
+### Find all with given email
+GET http://localhost:3000/auth?email=asdf@asdf.com
+
+### Delete user
+
+DELETE http://localhost:3000/auth/1
+
+### update user
+
+PATCH http://localhost:3000/auth/2
+Content-Type: application/json
+
+{
+    "password": "updatedPassword"
+}

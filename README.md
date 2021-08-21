@@ -50,5 +50,42 @@ Using TypeOrm
 
 Completing Car price practice
 	1.  Set up validation pipe (follow other branches readme file)
+    2.  Config services using Repository InjectRepository from typeorm and @nestjs/typeorm and different entities 
+        1). This time in constructor when defining services we need another decorator from typeorm
+    3.  Write services and use it in controller
+
+FYI: create and save difference
+    repository.create() only creates the instance of an Entity
+    repository.save() actually save it into databse
 
 	
+Defines functions in an Entity -- Using hooks
+    Hooks allow us to define functions on an entity that will be called automatically at certain points
+    1. AfterInsert()
+    2. AfterUpdate()
+    3. AfterRemove()
+
+    Hooks explains why we need to create an Entity instance and then save  instead of save the data directly to the database.   
+
+When we need a very flexible Type definition for example
+    User: email, name, password, age, ....
+    But sometimes we want to update email and sometimes we want to update name. 
+    How to define type definition for  function update(id:number, ??? : ???) { }
+    we can't define {email: string, password: string} because we don't know what user want's to update
+
+    so we can do Function update(id: number, attrs: Partial<User>){} User is the entity
+
+    repository.update is a method something like save() which are directly updating data into database without accessing Entity instance
+
+
+Even we are saying save() can access directly to the database, it usually used for Entity purposes
+we have 2 method used after creating Entity instance
+
+    1. save(Entity)
+    2. remove(Entity)
+
+    Using these Two methods will trigger the hooks in our Entity
+
+Completing controller
+    1. even id is number in DB, but params from url will always be string when we try to find a user by params in url
+    2. complete update function in controller, we need a brand new DTO called update-user.dto, the reason is also used for type definition.  Because we don't know wether user wants to update both of them or one of them     (By use IsOptional from class-validator)
