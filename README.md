@@ -89,3 +89,11 @@ we have 2 method used after creating Entity instance
 Completing controller
     1. even id is number in DB, but params from url will always be string when we try to find a user by params in url
     2. complete update function in controller, we need a brand new DTO called update-user.dto, the reason is also used for type definition.  Because we don't know wether user wants to update both of them or one of them     (By use IsOptional from class-validator)
+
+Encrypt Password
+    1. whenEver we take an instance of a user and trun them into a object and then into json,  
+    we use Exclude password by user Exclude() decorator from class-transformer  
+    2. Configure controller using UseInterceptor and ClassSerializerInterceptor at the request where we want the entity to except
+
+    But some times we might want different user see different response 
+    1. DTO is not only used for incooming data handling  but also outgoing data

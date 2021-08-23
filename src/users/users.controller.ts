@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Patch, Param, Query, Delete, NotFoundException } from '@nestjs/common';
+import { Body, Controller, Post, Get, Patch, Param, Query, Delete, NotFoundException, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
@@ -12,6 +12,8 @@ export class UsersController {
     createUser(@Body() body: CreateUserDto) {
         this.usersSerivice.create(body.email, body.password)
     }
+
+    @UseInterceptors(ClassSerializerInterceptor)
     @Get('/:id') // even id is number in DB, but params from url will always be string
     async findUser(@Param('id') id: string) {
         const user = await this.usersSerivice.findOne(parseInt(id))
