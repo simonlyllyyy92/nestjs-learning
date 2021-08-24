@@ -1,4 +1,3 @@
-import { Exclude } from "class-transformer";
 import { Entity, Column, PrimaryGeneratedColumn, AfterInsert, AfterRemove } from "typeorm"; //Decorators
 
 @Entity()
@@ -8,7 +7,6 @@ export class User {
     @Column()
     email: string;
     @Column()
-    @Exclude()
     password: string;
 
     //everytime a new record inserted

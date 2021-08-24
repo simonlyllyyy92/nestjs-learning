@@ -96,4 +96,20 @@ Encrypt Password
     2. Configure controller using UseInterceptor and ClassSerializerInterceptor at the request where we want the entity to except
 
     But some times we might want different user see different response 
+
+Interceptors
+
     1. DTO is not only used for incooming data handling  but also outgoing data
+
+    To fix it we create a seperate folder call interceptors and will use the interceptor across all our modules
+        1. Create serializeInterceptor implements NestInterceptor ( implements represents a class that satisfies all the requirements of either an abstract class or an interface)
+        2. replace the useinterceptors params to new created serializeinterceptor in user controller
+
+    The response usually gonna be a entity and then converted into a pure json file 
+
+    The interceptor however will convert the entity instance into a DTO before it becomes a pure json file
+        1. Create user dto file for the response of the entity instance 
+        2. List out which key is Expose to outside world 
+        3. config plainToClass in interceptor (map)
+        4. constructor to make it fully customizable in interceptor
+        5. create another export in interceptor to free the massive imports on controller
