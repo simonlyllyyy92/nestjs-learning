@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, AfterInsert, AfterRemove } from "typeorm"; //Decorators
+import { Entity, Column, PrimaryGeneratedColumn, AfterInsert, AfterRemove, AfterUpdate } from "typeorm"; //Decorators
 
 @Entity()
 export class User {
@@ -14,7 +14,7 @@ export class User {
     LogInsert(){
         console.log("Inserted User with id", this.id)
     }
-    @AfterRemove()
+    @AfterUpdate()
     LogUpdate(){
         console.log('updated user with id', this.id)
     }

@@ -30,7 +30,7 @@ Using TypeOrm
     2. Connect the entity to it’s parent module. (This creates a repository)
     3. Connect the entity to the root connection (in app module)
 
-  3. For synchronize property in app.Module, it represents
+3. For synchronize property in app.Module, it represents
 	Is only for use in dev env , 
      * this will ask typeOrm to look all your different entities 
      * and then automatically update the structure of your database 
@@ -92,8 +92,11 @@ Completing controller
 
 Encrypt Password
     1. whenEver we take an instance of a user and trun them into a object and then into json,  
-    we use Exclude password by user Exclude() decorator from class-transformer  
-    2. Configure controller using UseInterceptor and ClassSerializerInterceptor at the request where we want the entity to except
+    we use Interceptor
+    2. Create folder called interceptor
+    3. configure interceptor using UseInterceptor and Class SerializerInterceptor at the request where we want the entity to except
+    4. serialize at the controller
+    5. add expose decorator on user.dto.ts
 
     But some times we might want different user see different response 
 
